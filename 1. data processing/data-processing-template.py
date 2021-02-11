@@ -25,10 +25,10 @@ X[:, 1:3] = imputer.transform(X[:, 1:3])
 #encoding categorical data
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
-labelencoder_X = LabelEncoder()
-X[:,0] = labelencoder_X.fit_transform(X[:,0])
-ct = ColumnTransformer([("Country", OneHotEncoder(), [0])], remainder = 'passthrough')
-X = ct.fit_transform(X)
+ct = ColumnTransformer([('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+X = np.array(ct.fit_transform(X), dtype=np.float)
+Y = LabelEncoder().fit_transform(Y)
 
-labelencoder_Y = LabelEncoder()
-Y = labelencoder_Y.fit_transform(Y)
+#splitting datatset into training aand the test set
+from sklearn.model_selection import train_test_split 
+X_train, X_test, Y_train, Y_test =  train_test_split(X, Y,test_size = 0.2, random_state= 0)
