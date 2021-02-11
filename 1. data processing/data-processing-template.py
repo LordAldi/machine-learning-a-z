@@ -21,3 +21,14 @@ from sklearn.impute import SimpleImputer
 imputer = SimpleImputer()
 imputer = imputer.fit(X[:, 1:3])
 X[:, 1:3] = imputer.transform(X[:, 1:3])
+
+#encoding categorical data
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+labelencoder_X = LabelEncoder()
+X[:,0] = labelencoder_X.fit_transform(X[:,0])
+ct = ColumnTransformer([("Country", OneHotEncoder(), [0])], remainder = 'passthrough')
+X = ct.fit_transform(X)
+
+labelencoder_Y = LabelEncoder()
+Y = labelencoder_Y.fit_transform(Y)
