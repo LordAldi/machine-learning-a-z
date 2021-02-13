@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Feb 13 11:37:25 2021
+Created on Sun Feb 14 05:36:27 2021
 
 @author: User
 """
 
-#logistic regression
+
+#the classifier
 #importing the libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -27,10 +28,8 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
-#fitting logistic regression to the training set
-from sklearn.linear_model import LogisticRegression
-classifier = LogisticRegression(random_state=0)
-classifier.fit(X_train, y_train)
+#fitting the classifier to the training set
+#Create your classifier
 
 #predicting the test set result 
 y_pred = classifier.predict(X_test)
@@ -55,7 +54,7 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
     
-plt.title('Logistic Regression (Training set)')
+plt.title('the classifier (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -77,7 +76,7 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
     
-plt.title('Logistic Regression (test set)')
+plt.title('the classifier (test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
