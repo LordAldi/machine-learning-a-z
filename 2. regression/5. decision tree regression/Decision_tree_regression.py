@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 12 03:11:50 2021
+Created on Sat Feb 13 08:07:10 2021
 
 @author: User
 """
@@ -34,21 +34,23 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)"""
 
-#fitting the regressinon model to the dataset
-#create regressor
+#fitting the decision tree regressionmodel to the dataset
+from sklearn.tree import DecisionTreeRegressor
+regressor = DecisionTreeRegressor(criterion="mse", random_state=0)
+regressor.fit(X,y)
 
 
 
-#predicting a new result using polynomial regression
+#predicting a new result using decision tree regression
 y_pred = regressor.predict(np.array([[6.5]]))
 
 
-#visualing the regression result
-X_grid = np.arange(min(X), max(X),0.1)
+#visualing the decision tree regression result
+X_grid = np.arange(min(X), max(X),0.01)
 X_grid = X_grid.reshape((len(X_grid),1))
 plt.scatter(X, y, color='red')
 plt.plot(X_grid, regressor.predict(X_grid),color="blue")
-plt.title("regression model")
+plt.title("truth or bluff (decision tree regression)")
 plt.xlabel("level")
 plt.ylabel("salary")
 plt.show()
